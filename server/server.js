@@ -26,6 +26,7 @@ app.use(cors({
 
 // ROUTES
 app.get('/', (req, res) => {
+  console.log("getting popular movies");
   movie_db.get(
     '/movie/popular'
   )
