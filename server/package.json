@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Backend service for the React client UI",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neilcode/react-movie-search.git"
+  },
+  "author": "Neil Lambert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/neilcode/react-movie-search/issues"
+  },
+  "homepage": "https://github.com/neilcode/react-movie-search#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
