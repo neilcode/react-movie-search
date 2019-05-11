@@ -4,7 +4,8 @@
   "description": "Backend service for the React client UI",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
