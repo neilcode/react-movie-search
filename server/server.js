@@ -1,6 +1,8 @@
 const dotenv = require('dotenv'); 
 dotenv.config();
 
+const cors = require('cors')
+
 const port = process.env.PORT;
 const API_KEY = process.env.TMDB_KEY
 
@@ -17,6 +19,10 @@ const movie_db = axios.create({
   }
 });
 
+// Because I chose to separate client and server
+app.use(cors({
+  origin: 'http://localhost:3000'
+}));
 
 // ROUTES
 app.get('/', (req, res) => {
