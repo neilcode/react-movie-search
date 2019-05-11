@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import { popularMovies } from './movieService.js'
 import MovieList from './movieList.js'
 import axios from 'axios'
 
@@ -11,20 +10,19 @@ class App extends Component {
 
     this.submitSearch = (e) => {
       e.preventDefault();
-      debugger;
       console.log(this.state.movieSearchTerm);
     }
 
     this.state = {
       movieSearchTerm: '',
-      movies: ['notamovie']
+      movies: []
     }
   }
   
   componentDidMount() {
-    axios.get('http://localhost:3002/', { crossdomain: true })
+    axios.get('http://localhost:3002/')
       .then(response => {
-        this.setState({ movies: response.data })
+        this.setState({ movies: response.data.results })
       })
       .catch(error => {
         console.log(error)
@@ -43,7 +41,7 @@ class App extends Component {
             Go
           </button>
         </form>
-        <MovieList props={this.state.movies} />
+        <MovieList movies={this.state.movies} />
       </div>
     );
   }

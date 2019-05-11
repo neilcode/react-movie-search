@@ -3,18 +3,23 @@ import React, { Component } from 'react';
 import MovieCard from './movieCard.js';
 
 class MovieList extends Component {
-  constructor(props) {
-    super(props);
-  }
+  //constructor({ movies }) {
+    //super(props);
+
+    //this.state
+  //}
   
   render() {
+    const { movies } = this.props;
+    const cards = movies.map(movie => { 
+      return <MovieCard 
+        key={movie.id} 
+        title={movie.title}/> 
+    });
+
     return (
       <div>
-        <ul>
-          <MovieCard />
-          <MovieCard />
-          <MovieCard />
-        </ul>
+        <ul>{ cards }</ul>
       </div>
     );
   }

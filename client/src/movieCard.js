@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 
 class MovieCard extends Component {
-  //constructor(props) {
-    //super(props);
-  //}
-  
   render() {
+    const { title } = this.props;
     return (
-      <div>
-        card
-      </div>
+      <li> { title } </li>
     );
   }
 }
