@@ -1,7 +1,7 @@
 # React Movie Search
 
 ## Requirements
-* npm 6.9.0
+* Node with npm  (Node 12.1.0 was used for development)
 * An API key from TheMovieDb
 
 
@@ -34,4 +34,6 @@ npm start
 
 This should automatically open a browser and point you at `localhost:3000`. 
 
+The application is designed to be single page. You can click on any card to see a detailed view of the movie. Clicking on 'Go Back' should return you to your application's state.
 
+Searching for films is achieved with the search bar at the top. The 20 currently Most Popular movies are available by using the top nav bar, as well as a list of movies in theatres.
