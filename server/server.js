@@ -3,7 +3,6 @@ dotenv.config();
 
 const cors = require('cors')
 
-const port = process.env.PORT;
 const API_KEY = process.env.TMDB_KEY
 
 const express = require('express');
@@ -21,7 +20,9 @@ const movie_db = axios.create({
 
 // Because I chose to separate client and server
 app.use(cors({
-  origin: 'http://localhost:3000'
+  origin: '*'
+  //In a production environment we would want to 
+  //whitelist specific origins
 }));
 
 // ROUTES
@@ -75,4 +76,4 @@ app.get('/movies/:movieId', (req, res) => {
   })
 });
 
-app.listen(port, () => console.log("Backend service listening on port", port))
+app.listen(3002, () => console.log("Backend service listening on 3002"))
