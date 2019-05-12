@@ -3,42 +3,35 @@
 
 body, html {
   font-family: 'Montserrat', sans-serif;
-  background-color: $white;
 }
 
-.card {
+.single-card {
   width: 280px;
   height: 100%;
-  display: block;
+  display: inline;
   margin: 60px auto;
+  background-color: #ddd;
   transition: .55s;
 }
-.card:hover {
-  box-shadow: 5px 15px 15px 5px #545454;
-  cursor: pointer;
-}
-.card:hover {
-  transform: translate(0px, -10px);
-}
-
-.card-header {
+.single-card-header {
+  margin-top: 50px;
   height: 455px;
   width: 100%;
   padding: 15px;
   width: 100%;
   background-size: cover;
-  color: #fff;
 }
 
-.card-body--title {
+.single-card-body--title {
   text-transform: uppercase;
   margin: 0;
+  text-align: center;
 }
 
-.card-body {
+.single-card-body {
   padding: 15px;
   background-color: #ddd;
-  height: 240px;
+  height: 75%;
   width: 100%;
 }
 
@@ -48,13 +41,14 @@ body, html {
   color: grey;
 }
 
-.body-content {
-  padding-bottom: 40px;
+.single-card-body-content {
+
+  padding: 40px;
   font-size: 15px;
   line-height: 1.8;
 }
 
-.button-primary {
+.single-card-button-primary {
   border: none;
   box-shadow: none;
   font-family: inherit;
@@ -62,15 +56,4 @@ body, html {
   color: #341cac;
   font-size: 15px;
   transition: .25s;
-}
-.button-primary i {
-  padding-right: 4px;
-}
-
-.designer-link {
-  color: #fff;
-  text-align: center;
-  fon-size: 12px;
-  text-decoration: none;
-  display: block;
 }

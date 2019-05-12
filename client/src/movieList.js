@@ -1,31 +1,31 @@
 import React from 'react';
-import { Row, Col } from 'react-grid-system';
-import MovieCard from './movieCard.js';
 import lodash from 'lodash';
-const _ = lodash;
+import { Row, Col } from 'react-grid-system';
+import './movieList.css';
+import MovieCard from './movieCard.js';
 
-const MovieList = ({ movies, fetchMovieDetails }) => {
+const MovieList = ({ visibility, movies, fetchMovieDetails }) => {
   const itemsPerRow = 3;
 
-  // Take an unknown number of movie results and chunk them into groups of 3
-  // This gives a nice 3-column grid without a lot of cruft.
-  const movieCardRows = _.chunk(
+  // chunks n movie results groups of 3
+  const movieCardRows = lodash.chunk(
     movies.map(movie => { return <MovieCard fetchMovieDetails={fetchMovieDetails} {...movie} /> }),
     itemsPerRow
   );
 
+  const display = visibility ? 'show' : 'hide'
+  
   return (
-    <div>
-      { _.map(movieCardRows, (row, rowNum) => { 
-        return(
+    // className toggles visibility with CSS
+    // maps over our result chunks and wraps 
+    // each chunk in <Row> tags for grid layout.
+    // each result is wrapped in <Col>. Grid
+    // is 3 x ( n / 3 ) at fullsize.
+    <div className={`movieList-${display}`}>
+      { lodash.map(movieCardRows, (row, rowNum) => { 
+        return (
           <Row key={rowNum}>
-            { _.each(row, movieCard => { 
-              return(
-                <Col>
-                  {movieCard}
-                </Col>
-              ) 
-            })}
+            { lodash.each(row, movieCard => { return <Col>{movieCard}</Col> })}
           </Row>
         )
       })}

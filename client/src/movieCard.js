@@ -14,15 +14,13 @@ const MovieCard = (props) => {
 export default MovieCard;
 
 const MovieCardHeader = ({ poster_path }) => {
-  const poster_img = poster_path ? 'url(https://image.tmdb.org/t/p/w400' + poster_path + ')' : null;
+  const poster_img = poster_path ? 'url(https://image.tmdb.org/t/p/w400'+poster_path+')' : null;
 
   var style = { 
     backgroundImage: poster_img
   };
 
-  return (
-    <header style={style} className="card-header"/>
-  )
+  return <header style={style} className="card-header"/>;
 }
 
 const MovieCardBody = ({ title, overview, release_date }) => {

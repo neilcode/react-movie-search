@@ -25,16 +25,26 @@ app.use(cors({
 }));
 
 // ROUTES
-app.get('/', (req, res) => {
+
+app.get('/most_popular', (req, res) => {
   movie_db.get(
     '/movie/popular'
   )
   .then(function (api_response) {
-    res.send(api_response.data);
+    res.send(api_response.data.results);
   })
   .catch(error_response => { console.log(error_response) });
 });
 
+app.get('/now_playing', (req, res) => {
+  movie_db.get(
+    '/movie/now_playing'
+  )
+  .then(function (api_response) {
+    res.send(api_response.data.results);
+  })
+  .catch(error_response => { console.log(error_response) });
+});
 // search route captures anything from the 'title' query string parameters and
 // sends to the MovieDB search endpoint. In a production system we would want to 
 // sanitize the input. Sanitization could also be implemented in the Client UI.
