@@ -2,8 +2,9 @@ import React from 'react';
 import './movieCard.css';
 
 const MovieCard = (props) => {
+  const { fetchMovieDetails, id } = props;
   return (
-    <div className='card' key={props.id}>
+    <div className='card' onClick={() => fetchMovieDetails(id)}>
       <MovieCardHeader {...props}/>
       <MovieCardBody {...props}/>
     </div>
@@ -12,29 +13,27 @@ const MovieCard = (props) => {
 
 export default MovieCard;
 
-const MovieCardHeader = ({ title, poster_path }) => {
-  const poster_img = 'https://image.tmdb.org/t/p/w200' + poster_path;
+const MovieCardHeader = ({ poster_path }) => {
+  const poster_img = poster_path ? 'url(https://image.tmdb.org/t/p/w400' + poster_path + ')' : null;
 
   var style = { 
-      backgroundImage: 'url(' + poster_img + ')',
+    backgroundImage: poster_img
   };
 
   return (
-    <header style={style} className="card-header">
-      <h4 className="card-header--title">{title}</h4>
-    </header>
+    <header style={style} className="card-header"/>
   )
 }
 
-const MovieCardBody = ({ overview, release_date }) => {
+const MovieCardBody = ({ title, overview, release_date }) => {
   return (
     <div className="card-body">
+      <h4 className="card-body--title">{title}</h4>
       <p className="date">Released: { release_date }</p>
       
-      <p className="body-content">{ overview }</p>
-      <button className="button button-primary">
-        <i className="fa fa-chevron-right"></i> Find out more
-      </button>
+      <p className="body-content">
+        { overview.length > 200 ? overview.substring(0,200) + '...(click for more)' : overview }
+      </p>
     </div>
   )
 }
