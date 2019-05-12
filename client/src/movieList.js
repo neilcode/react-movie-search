@@ -1,28 +1,16 @@
-import React, { Component } from 'react';
-
+import React from 'react';
 import MovieCard from './movieCard.js';
 
-class MovieList extends Component {
-  //constructor({ movies }) {
-    //super(props);
+const MovieList = ({ movies }) => {
+  const cards = movies.map(movie => { 
+    return <MovieCard {...movie} /> 
+  });
 
-    //this.state
-  //}
-  
-  render() {
-    const { movies } = this.props;
-    const cards = movies.map(movie => { 
-      return <MovieCard 
-        key={movie.id} 
-        title={movie.title}/> 
-    });
-
-    return (
-      <div>
-        <ul>{ cards }</ul>
-      </div>
-    );
-  }
+  return (
+    <div>
+      { cards }
+    </div>
+  );
 }
 
 export default MovieList;

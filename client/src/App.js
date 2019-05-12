@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 
 import MovieList from './movieList.js'
 import axios from 'axios'
