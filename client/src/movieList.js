@@ -1,28 +1,36 @@
-import React, { Component } from 'react';
-
+import React from 'react';
+import lodash from 'lodash';
+import { Row, Col } from 'react-grid-system';
+import './movieList.css';
 import MovieCard from './movieCard.js';
 
-class MovieList extends Component {
-  //constructor({ movies }) {
-    //super(props);
+const MovieList = ({ visibility, movies, fetchMovieDetails }) => {
+  const itemsPerRow = 3;
 
-    //this.state
-  //}
+  // chunks n movie results groups of 3
+  const movieCardRows = lodash.chunk(
+    movies.map(movie => { return <MovieCard fetchMovieDetails={fetchMovieDetails} {...movie} /> }),
+    itemsPerRow
+  );
+
+  const display = visibility ? 'show' : 'hide'
   
-  render() {
-    const { movies } = this.props;
-    const cards = movies.map(movie => { 
-      return <MovieCard 
-        key={movie.id} 
-        title={movie.title}/> 
-    });
-
-    return (
-      <div>
-        <ul>{ cards }</ul>
-      </div>
-    );
-  }
+  return (
+    // className toggles visibility with CSS
+    // maps over our result chunks and wraps 
+    // each chunk in <Row> tags for grid layout.
+    // each result is wrapped in <Col>. Grid
+    // is 3 x ( n / 3 ) at fullsize.
+    <div className={`movieList-${display}`}>
+      { lodash.map(movieCardRows, (row, rowNum) => { 
+        return (
+          <Row key={rowNum}>
+            { lodash.each(row, movieCard => { return <Col>{movieCard}</Col> })}
+          </Row>
+        )
+      })}
+    </div>
+  );
 }
 
 export default MovieList;

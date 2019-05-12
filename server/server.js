@@ -25,23 +25,34 @@ app.use(cors({
 }));
 
 // ROUTES
-app.get('/', (req, res) => {
-  console.log("getting popular movies");
+
+app.get('/most_popular', (req, res) => {
   movie_db.get(
     '/movie/popular'
   )
   .then(function (api_response) {
-    res.send(api_response.data);
+    res.send(api_response.data.results);
   })
+  .catch(error_response => { console.log(error_response) });
 });
 
+app.get('/now_playing', (req, res) => {
+  movie_db.get(
+    '/movie/now_playing'
+  )
+  .then(function (api_response) {
+    res.send(api_response.data.results);
+  })
+  .catch(error_response => { console.log(error_response) });
+});
 // search route captures anything from the 'title' query string parameters and
 // sends to the MovieDB search endpoint. In a production system we would want to 
 // sanitize the input. Sanitization could also be implemented in the Client UI.
 app.get('/search', function (req, res) {
   movie_db.get('/search/movie', {
     params: {
-      query: req.query.title 
+      query: req.query.title,
+      include_adult: false
     }
   })
   .then(function (api_response) {
@@ -52,7 +63,7 @@ app.get('/search', function (req, res) {
   })
 })
 
-app.get('/movie/:movieId', (req, res) => {
+app.get('/movies/:movieId', (req, res) => {
   movie_db.get(
     '/movie/' + req.params.movieId
   )
