@@ -63,6 +63,7 @@ class App extends Component {
     this.setState({ 
       movieHasFocus: false,
       focusedMovie: {},
+      movieSearchTerm: '',
       movies: this.state.mostPopularMovies 
     });
   }
@@ -71,6 +72,7 @@ class App extends Component {
     this.setState({ 
       movieHasFocus: false,
       focusedMovie: {},
+      movieSearchTerm: '',
       movies: this.state.nowPlaying 
     });
   }
@@ -120,7 +122,11 @@ class App extends Component {
       }
     })
     .then(response => {
-      this.setState({ movies: response.data.results })
+      this.setState({ 
+        focusedMovie: {},
+        movieHasFocus: false,
+        movies: response.data
+      })
     })
     .catch(error => {
       console.log(error);

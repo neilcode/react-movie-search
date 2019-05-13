@@ -3,6 +3,7 @@ const cors    = require('cors')
 const express = require('express');
 const app     = express(); 
 const axios   = require('axios');
+const lodash  = require('lodash');
 
 // Setup configuration
 dotenv.config();
@@ -65,7 +66,16 @@ app.get('/search', (req, res) => {
     }
   })
   .then(api_response => {
-    res.send(api_response.data);
+    res.send(
+      // filter out results that don't have images since it makes for a bad
+      // UX experience. If i'd had more time I would have made a placeholder
+      // svg to stub out the missing posters, but as it is the only results 
+      // which lack images are obscure movies anyway.
+      lodash.filter(
+        api_response.data.results,
+        (result) => { return result.poster_path != null }
+      )
+    );
   })
   .catch(error_response => {
     console.log(error_response);
